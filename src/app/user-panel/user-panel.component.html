@@ -1,0 +1,36 @@
+<div class="user-panel-container">
+  <h2>User Panel</h2>
+  <div>
+    <h3>Vaše rezervacije</h3>
+    <ul>
+      <li *ngFor="let reservation of userReservations$ | async">
+        {{ reservation.racunarId }} - {{ reservation.datum | date }} ({{ reservation.brojSati }} sati)
+      </li>
+    </ul>
+  </div>
+  <div class="user-content">
+    <h3>Dostupni Racunari za Rezervaciju</h3>
+    <button (click)="refreshData()">Osveži</button>
+    <form [formGroup]="reservationForm" (ngSubmit)="reserveComputer()">
+      <div *ngFor="let computer of notReservedRacunari$ | async">
+        <input
+          type="radio"
+          [id]="computer.id"
+          [value]="computer.id"
+          [checked]="selectedComputerId === computer.id"
+          (change)="onSelectComputer(computer)"
+        />
+        <label [for]="computer.id">{{ computer.graficka }} - {{ computer.procesor }} ({{ computer.cena_po_satu }}e po satu)</label>
+      </div>
+      
+      <input type="number" formControlName="brojSati" />
+      <button type="submit">Rezerviši</button>
+    </form>
+
+    <div *ngIf="reservationError">{{ reservationError }}</div>
+  </div>
+</div>
+
+<div class="back-to-login">
+  <button (click)="navigateToLogin()">Nazad na Login</button>
+</div>

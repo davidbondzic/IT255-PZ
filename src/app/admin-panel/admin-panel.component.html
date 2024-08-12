@@ -1,0 +1,102 @@
+  <!-- admin-panel.component.html -->
+<div class="admin-panel-container">
+  <h2>Admin Panel</h2>
+  
+  <div class="admin-content">
+    <div>
+      <h3>Dodaj Novi Racunar</h3>
+      <form>
+        <form>
+          <div class="form-group">
+            <label for="graficka">Graficka:</label>
+            <input type="text" id="graficka" name="graficka" [(ngModel)]="noviRacunar.graficka" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="procesor">Procesor:</label>
+            <input type="text" id="procesor" name="procesor" [(ngModel)]="noviRacunar.procesor" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="Ram">Ram:</label>
+            <input type="number" id="Ram" name="Ram" [(ngModel)]="noviRacunar.ram" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="cena_po_satu">Cena po satu:</label>
+            <input type="number" id="cena_po_satu" name="cena_po_satu" [(ngModel)]="noviRacunar.cena_po_satu" required>
+          </div>
+          <button type="button" (click)="dodajNoviRacunar()">Dodaj Racunar</button>
+          <button *ngIf="showUpdateButton" (click)="azurirajRacunar()">Ažuriraj</button>
+        </form>
+      </form>
+    </div>
+    
+    <div>
+      <h3>Racunari</h3>
+      <table class="admin-table">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Graficka</th>
+              <th>Procesor</th>
+              <th>Ram</th>
+              <th>Cena po satu</th>
+              <th>Rezervisan</th>
+              <th>Brisanje</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let racunar of racunari">
+              <td>{{ racunar.id }}</td>
+              <td>{{ racunar.graficka }}</td>
+              <td>{{ racunar.procesor }}</td>
+              <td>{{ racunar.ram }}</td>
+              <td>{{ racunar.cena_po_satu }}</td>
+              <td>{{ racunar.rezervisano ? 'Da' : 'Ne' }}</td>
+              <td>
+                <button (click)="obrisiRacunar(racunar.id)">Obriši</button>
+                <button (click)="popuniFormuZaAzuriranje(racunar)">Ažuriraj</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </table>
+    </div>
+
+    <div>
+      <h3>Rezervacije</h3>
+      <ul class="admin-list">
+        <ul>
+          <li *ngFor="let reservation of rezervacije">
+            {{ reservation.racunarId }} - {{ reservation.datum | date }} ({{ reservation.brojSati }} sati)
+            <button (click)="deleteReservation(reservation.id)">Obriši</button>
+          </li>
+        </ul>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Useri</h3>
+      <table class="admin-table">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Ime</th>
+              <th>Prezime</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td>{{ user.id }}</td>
+              <td>{{ user.username }}</td>
+              <td>{{ user.password }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </table>
+    </div>
+  </div>
+</div>

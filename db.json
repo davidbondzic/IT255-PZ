@@ -1,0 +1,64 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "user1",
+      "password": "pass1",
+      "type": "user"
+    },
+    {
+      "id": "2",
+      "username": "admin",
+      "password": "admin",
+      "type": "admin"
+    },
+    {
+      "id": "12333",
+      "username": "david",
+      "password": "123",
+      "type": "user"
+    }
+  ],
+  "racunari": [
+    {
+      "id": "0669",
+      "graficka": "RTX 3090",
+      "procesor": "R5 5600x",
+      "ram": 32,
+      "cena_po_satu": 200,
+      "rezervisano": true
+    },
+    {
+      "id": "fef4",
+      "graficka": "RTX 4080",
+      "procesor": "Intel i9 12900k",
+      "ram": 64,
+      "cena_po_satu": 450,
+      "rezervisano": true
+    },
+    {
+      "id": "a53f",
+      "graficka": "GTX 1050TI",
+      "procesor": "R5 3600",
+      "ram": 16,
+      "cena_po_satu": 100,
+      "rezervisano": false
+    }
+  ],
+  "rezervacije": [
+    {
+      "id": "1ef0",
+      "racunarId": "fef4",
+      "userId": "12333",
+      "datum": "2024-08-12T17:30:49.492Z",
+      "brojSati": 1
+    },
+    {
+      "id": "e1fa",
+      "racunarId": "0669",
+      "userId": "12333",
+      "datum": "2024-08-12T17:31:20.619Z",
+      "brojSati": 4
+    }
+  ]
+}
